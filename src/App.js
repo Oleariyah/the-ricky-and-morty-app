@@ -1,11 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { getAllCharacters, getCharacters } from "./store/characters";
+import { useSelector, useDispatch } from "react-redux";
+import "./App.css";
 
 function App() {
+  const dispatch = useDispatch();
+  const characters = useSelector(getCharacters);
+
+  useEffect(() => {
+    dispatch(getAllCharacters());
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log("gg", characters);
+  }, [characters]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
