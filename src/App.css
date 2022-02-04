@@ -1,5 +1,9 @@
 .App {
-  text-align: center;
+  background-color: #eaebed;
+  padding: 0;
+  height: auto !important;
+  margin: 0 auto -142px;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -15,17 +19,115 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: clamp(2rem, 5vw, 5rem);
+  color: goldenrod;
+  font-weight: 900;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.fill img {
+  flex-shrink: 0;
+  max-width: 100%;
+  min-height: 100%;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #383a3d;
+}
+
+.alive {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+}
+
+.dead {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #383a3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border: 1px solid #cccccc;
+}
+
+.card {
+  background-color: #eaebed;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn {
+  background-color: #eaebed;
+  border: none;
+  color: #383a3d;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.goback {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  bottom: 20px;
+  left: 90%;
+  padding: 10px;
+  background-color: #eaebed;
+  border: none;
+  color: #383a3d;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.goback:hover {
+  background-color: black;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
 }
 
 @keyframes App-logo-spin {

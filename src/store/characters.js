@@ -6,7 +6,8 @@ const slice = createSlice({
   name: "characters",
   initialState: {
     loading: false,
-    details: null,
+    all: null,
+    detail: null,
     updated: null,
     lastFetch: null,
   },
@@ -16,22 +17,31 @@ const slice = createSlice({
     },
     gotCharacters: (characters, action) => {
       characters.loading = false;
-      characters.details = action?.payload;
+      characters.all = action?.payload;
+    },
+    gotSingleCharacter: (characters, action) => {
+      characters.loading = false;
+      characters.detail = action?.payload;
     },
     charactersRequestFailed: (characters) => {
       characters.loading = false;
     },
     charactersReset: (characters) => {
       characters.loading = false;
-      characters.details = null;
+      characters.all = null;
+      characters.detail = null;
       characters.updated = null;
       characters.lastFetch = null;
     },
   },
 });
 
-const { charactersRequested, charactersRequestFailed, gotCharacters } =
-  slice.actions;
+const {
+  charactersRequested,
+  charactersRequestFailed,
+  gotCharacters,
+  gotSingleCharacter,
+} = slice.actions;
 
 //Action Creators
 export const getAllCharacters = () => (dispatch, getState) => {
@@ -41,6 +51,18 @@ export const getAllCharacters = () => (dispatch, getState) => {
       method: "get",
       onStart: charactersRequested.type,
       onSuccess: gotCharacters.type,
+      onError: charactersRequestFailed.type,
+    })
+  );
+};
+
+export const getSingleCharacter = (characteId) => (dispatch, getState) => {
+  dispatch(
+    apiCallBegan({
+      url: `/character/${characteId}`,
+      method: "get",
+      onStart: charactersRequested.type,
+      onSuccess: gotSingleCharacter.type,
       onError: charactersRequestFailed.type,
     })
   );
