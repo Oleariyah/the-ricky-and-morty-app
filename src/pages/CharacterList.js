@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import CryptoJS from "crypto-js";
+import { Helmet } from "react-helmet";
 
 export default function CharacterList() {
   const dispatch = useDispatch();
@@ -51,6 +52,11 @@ export default function CharacterList() {
 
   return (
     <div className="profile">
+      <Helmet>
+        <title>Rick and Morty Character List</title>
+        <meta charSet="utf-8" />
+        <meta name="description" content="Rick and Morty Character List" />
+      </Helmet>
       <header className="App-header">
         <p>The Rick and Morty</p>
       </header>

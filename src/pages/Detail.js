@@ -5,6 +5,7 @@ import { getCharacters } from "../store/characters";
 import { getCharacterLocations, getLocations } from "../store/location";
 import { getCharacterEpisodes, getEpisodes } from "../store/episodes";
 import { getCharacterOrigin, getOrigin } from "../store/origin";
+import { Helmet } from "react-helmet";
 import CryptoJS from "crypto-js";
 import Summary from "../components/Summary";
 import Origin from "../components/Origin";
@@ -71,6 +72,14 @@ export default function Detail() {
 
   return (
     <div>
+      <Helmet>
+        <title>Rick and Morty</title>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="Rick and Morty Character Description"
+        />
+      </Helmet>
       <div className="container">
         <div style={{ paddingTop: 100 }}>
           <div className="row">
