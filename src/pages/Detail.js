@@ -64,7 +64,7 @@ export default function Detail() {
       dispatch(getCharacterEpisodes(decryptedEpData));
     } catch (e) {
       console.error(e);
-      window.location.href = "/";
+      //window.location.href = "/";
     }
   }, [dispatch, characterId, episodeId, characterData]);
 
