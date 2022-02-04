@@ -25,31 +25,38 @@ export default function Detail() {
   const { characterId, episodeId } = useParams();
 
   useEffect(() => {
-    const bytesId = CryptoJS.AES.decrypt(
-      characterId,
-      process.env.REACT_APP_API_SECRET_KEY
-    );
+    try {
+      const bytesId = CryptoJS.AES.decrypt(
+        characterId,
+        process.env.REACT_APP_API_SECRET_KEY
+      );
 
-    const bytesEpIds = CryptoJS.AES.decrypt(
-      episodeId,
-      process.env.REACT_APP_API_SECRET_KEY
-    );
+      const bytesEpIds = CryptoJS.AES.decrypt(
+        episodeId,
+        process.env.REACT_APP_API_SECRET_KEY
+      );
+      const decryptedData = JSON.parse(bytesId.toString(CryptoJS.enc.Utf8));
+      const decryptedEpData = JSON.parse(
+        bytesEpIds.toString(CryptoJS.enc.Utf8)
+      );
 
-    const decryptedData = JSON.parse(bytesId.toString(CryptoJS.enc.Utf8));
-    const decryptedEpData = JSON.parse(bytesEpIds.toString(CryptoJS.enc.Utf8));
+      if (decryptedData) {
+        let detail =
+          characterData?.all?.results.find(
+            (item) => item.id === decryptedData
+          ) || null;
+        setCharacter(detail);
+        let originId = detail?.origin?.url.split("/")[5] || null;
+        let locationId = detail?.location?.url.split("/")[5] || null;
 
-    if (decryptedData) {
-      let detail =
-        characterData?.all?.results.find((item) => item.id === decryptedData) ||
-        null;
-      setCharacter(detail);
-      let originId = detail?.origin?.url.split("/")[5] || null;
-      let locationId = detail?.location?.url.split("/")[5] || null;
-
-      if (originId) dispatch(getCharacterOrigin(originId));
-      if (locationId) dispatch(getCharacterLocations(locationId));
+        if (originId) dispatch(getCharacterOrigin(originId));
+        if (locationId) dispatch(getCharacterLocations(locationId));
+      }
+      dispatch(getCharacterEpisodes(decryptedEpData));
+    } catch (e) {
+      console.error(e);
+      window.location.href = "/";
     }
-    dispatch(getCharacterEpisodes(decryptedEpData));
   }, [dispatch, characterId, episodeId, characterData]);
 
   useEffect(() => {

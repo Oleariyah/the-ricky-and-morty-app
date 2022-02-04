@@ -75,6 +75,7 @@
   align-items: center;
   margin: 0 auto;
   border: 1px solid #cccccc;
+  animation: img-animation 1s forwards;
 }
 
 .card {
@@ -130,11 +131,40 @@
   transition: 0.3s;
 }
 
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(170, 169, 169, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  align-items: center;
+}
+
+.not-found {
+  font-weight: "bolder";
+  font-size: 200;
+  margin-top: 20;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes img-animation {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
   }
 }
