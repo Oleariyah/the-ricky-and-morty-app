@@ -12,7 +12,7 @@ export default function Episodes({ episode }) {
             </span>
           ))
         ) : (
-          <span>No episodes found.</span>
+          <span>{episode?.name}.</span>
         )}
       </div>
     </div>

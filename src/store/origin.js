@@ -21,17 +21,27 @@ const slice = createSlice({
     originRequestFailed: (origin) => {
       origin.loadingOrigin = false;
     },
+    originReset: (origin) => {
+      origin.loadingOrigin = false;
+      origin.all = null;
+      origin.updated = null;
+      origin.lastFetch = null;
+    },
   },
 });
 
-const { originRequested, originRequestFailed, gotOrigin } = slice.actions;
+const { originRequested, originRequestFailed, gotOrigin, originReset } =
+  slice.actions;
 
 //Action Creators
+export const resetOrigin = () => (dispatch, getState) => {
+  dispatch({ type: originReset.type });
+};
 
-export const getCharacterOrigin = (characterId) => (dispatch, getState) => {
+export const getCharacterOrigin = (id) => (dispatch, getState) => {
   dispatch(
     apiCallBegan({
-      url: `/location/${characterId}`,
+      url: `/location/${id}`,
       method: "get",
       onStart: originRequested.type,
       onSuccess: gotOrigin.type,

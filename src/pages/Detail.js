@@ -50,8 +50,16 @@ export default function Detail() {
         let originId = detail?.origin?.url.split("/")[5] || null;
         let locationId = detail?.location?.url.split("/")[5] || null;
 
-        if (originId) dispatch(getCharacterOrigin(originId));
-        if (locationId) dispatch(getCharacterLocations(locationId));
+        if (originId) {
+          dispatch(getCharacterOrigin(originId));
+        } else {
+          setOrigin(detail?.origin);
+        }
+        if (locationId) {
+          dispatch(getCharacterLocations(locationId));
+        } else {
+          setLocation(detail?.location);
+        }
       }
       dispatch(getCharacterEpisodes(decryptedEpData));
     } catch (e) {

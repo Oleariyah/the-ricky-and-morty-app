@@ -11,32 +11,45 @@ const slice = createSlice({
     lastFetch: null,
   },
   reducers: {
-    locatiionsRequested: (locations) => {
+    locationsRequested: (locations) => {
       locations.loadingLocations = true;
     },
     gotLocations: (locations, action) => {
       locations.loadingLocations = false;
       locations.all = action?.payload;
     },
-    locatiionsRequestFailed: (locations) => {
+    locationsRequestFailed: (locations) => {
       locations.loadingLocations = false;
+    },
+    locationsReset: (locations) => {
+      locations.loadingLocations = false;
+      locations.all = null;
+      locations.updated = null;
+      locations.lastFetch = null;
     },
   },
 });
 
-const { locatiionsRequested, locatiionsRequestFailed, gotLocations } =
-  slice.actions;
+const {
+  locationsRequested,
+  locationsRequestFailed,
+  gotLocations,
+  locationsReset,
+} = slice.actions;
 
 //Action Creators
+export const resetLocation = () => (dispatch, getState) => {
+  dispatch({ type: locationsReset.type });
+};
 
 export const getCharacterLocations = (id) => (dispatch, getState) => {
   dispatch(
     apiCallBegan({
       url: `/location/${id}`,
       method: "get",
-      onStart: locatiionsRequested.type,
+      onStart: locationsRequested.type,
       onSuccess: gotLocations.type,
-      onError: locatiionsRequestFailed.type,
+      onError: locationsRequestFailed.type,
     })
   );
 };

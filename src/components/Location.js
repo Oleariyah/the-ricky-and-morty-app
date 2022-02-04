@@ -10,7 +10,9 @@ export default function Location({ location }) {
             key={index}
             label={item + ":"}
             value={
-              item === "residents" ? location?.[item].length : location?.[item]
+              item === "residents"
+                ? location?.[item] && location?.[item].length
+                : location?.[item]
             }
             line={index === 0 ? false : true}
           />

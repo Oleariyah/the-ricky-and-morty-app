@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getAllCharacters, getCharacters } from "../store/characters";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { resetOrigin } from "../store/origin";
+import { resetLocation } from "../store/location";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import CryptoJS from "crypto-js";
 import { Helmet } from "react-helmet";
@@ -13,6 +15,8 @@ export default function CharacterList() {
   const [state, setState] = useState({});
 
   useEffect(() => {
+    dispatch(resetOrigin());
+    dispatch(resetLocation());
     dispatch(getAllCharacters());
   }, [dispatch]);
 

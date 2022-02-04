@@ -10,7 +10,9 @@ export default function Origin({ origin }) {
             key={index}
             label={item + ":"}
             value={
-              item === "residents" ? origin?.[item].length : origin?.[item]
+              item === "residents"
+                ? origin?.[item] && origin?.[item].length
+                : origin?.[item]
             }
             line={index === 0 ? false : true}
           />
