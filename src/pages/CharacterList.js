@@ -8,9 +8,11 @@ import { resetLocation } from "../store/location";
 import { faInfo } from "@fortawesome/free-solid-svg-icons";
 import CryptoJS from "crypto-js";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 
 export default function CharacterList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const data = useSelector(getCharacters);
   const [state, setState] = useState({});
 
@@ -42,8 +44,7 @@ export default function CharacterList() {
         process.env.REACT_APP_API_SECRET_KEY
       ).toString()
     );
-
-    window.location.href = `/detail/${cipherId}/${cipherEpIds}`;
+    navigate(`/detail/${cipherId}/${cipherEpIds}`);
   };
 
   const handleEpisodeId = (id) => {

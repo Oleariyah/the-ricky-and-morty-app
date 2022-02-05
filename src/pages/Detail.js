@@ -11,9 +11,11 @@ import Summary from "../components/Summary";
 import Origin from "../components/Origin";
 import Location from "../components/Location";
 import Episodes from "../components/Episodes";
+import { useNavigate } from "react-router-dom";
 
 export default function Detail() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const characterData = useSelector(getCharacters);
   const locationData = useSelector(getLocations);
   const episodeData = useSelector(getEpisodes);
@@ -75,10 +77,8 @@ export default function Detail() {
   }, [locationData, episodeData, originData]);
 
   const goBack = () => {
-    window.history.back();
+    navigate("/");
   };
-
-  console.log(origin);
 
   return (
     <div>
