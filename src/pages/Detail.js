@@ -71,9 +71,9 @@ export default function Detail() {
   }, [dispatch, characterId, episodeId, characterData]);
 
   useEffect(() => {
-    if (locationData && locationData.all) setLocation(locationData.all);
-    if (episodeData && episodeData.all) setEpisode(episodeData.all);
-    if (originData && originData.all) setOrigin(originData.all);
+    if (locationData) setLocation(locationData);
+    if (episodeData) setEpisode(episodeData);
+    if (originData) setOrigin(originData);
   }, [locationData, episodeData, originData]);
 
   const goBack = () => {
@@ -97,9 +97,15 @@ export default function Detail() {
               <Summary character={character} />
             </div>
             <div className="col-md-7">
-              <Origin origin={origin} />
-              <Location location={location} />
-              <Episodes episode={episode} />
+              <Origin origin={origin?.all} loading={origin.loadingOrigin} />
+              <Location
+                location={location?.all}
+                loading={location.loadingLocations}
+              />
+              <Episodes
+                episode={episode?.all}
+                loading={episode.loadingEpisode}
+              />
             </div>
           </div>
         </div>
