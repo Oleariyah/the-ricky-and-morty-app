@@ -9,7 +9,7 @@ function ConfigRouters() {
       <Route exact path="/" element={<CharacterList />} />
       <Route exact path="detail/:characterId/:episodeId" element={<Detail />} />
       <Route exact path="not-found" element={<NotFound />} />
-      <Route path="*" element={<Navigate to="not-found" />} />
+      <Route path="*" element={<Navigate to="/not-found" />} />
     </Routes>
   );
 }

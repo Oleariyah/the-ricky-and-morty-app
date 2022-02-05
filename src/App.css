@@ -145,12 +145,6 @@
   align-items: center;
 }
 
-.not-found {
-  font-weight: "bolder";
-  font-size: 200;
-  margin-top: 20;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
