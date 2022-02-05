@@ -97,14 +97,14 @@ export default function Detail() {
               <Summary character={character} />
             </div>
             <div className="col-md-7">
-              <Origin origin={origin?.all} loading={origin.loadingOrigin} />
+              <Origin origin={origin?.all} loading={origin?.loadingOrigin} />
               <Location
                 location={location?.all}
-                loading={location.loadingLocations}
+                loading={location?.loadingLocations}
               />
               <Episodes
                 episode={episode?.all}
-                loading={episode.loadingEpisode}
+                loading={episode?.loadingEpisode}
               />
             </div>
           </div>
