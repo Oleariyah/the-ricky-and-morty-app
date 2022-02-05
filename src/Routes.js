@@ -1,9 +1,7 @@
-import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
-const CharacterList = lazy(() => import("./pages/CharacterList"));
-const Detail = lazy(() => import("./pages/Detail"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Detail from "./pages/Detail";
+import CharacterList from "./pages/CharacterList";
+import NotFound from "./pages/NotFound";
 
 function ConfigRouters() {
   return (
@@ -11,7 +9,7 @@ function ConfigRouters() {
       <Route exact path="/" element={<CharacterList />} />
       <Route exact path="detail/:characterId/:episodeId" element={<Detail />} />
       <Route exact path="not-found" element={<NotFound />} />
-      <Route path="*" element={<Navigate to="/not-found" />} />
+      <Route path="*" element={<Navigate to="not-found" />} />
     </Routes>
   );
 }
